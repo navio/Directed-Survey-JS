@@ -16,7 +16,7 @@ wizard.prototype = {
 	
 	wizardRenderer: function render( qs ) {
 	
-		var wizardHTML = document.createElement( "div" );
+		var wizardHTML = document.createElement( "div" ); // create container
 		wizardHTML.setAttribute( 'class', 'wizard' );
 		
 		if ( qs.length ) {
@@ -27,6 +27,8 @@ wizard.prototype = {
 		} else {
 			console.error( "Problems with questions json, no questions attached." );
 		}
+		
+		return wizardHTML;
 	},
 
   /*
@@ -44,6 +46,7 @@ wizard.prototype = {
 		var htmlQuestion = document.createElement( "div" );
 		htmlQuestion.setAttribute( 'id', "question" + qID );
 		htmlQuestion.setAttribute( 'class', 'question' );
+		
 		var htmlText = document.createElement( "header" );
 		htmlText.innerHTML = question;
 		htmlQuestion.appendChild( htmlText );
