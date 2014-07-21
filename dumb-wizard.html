@@ -2,17 +2,17 @@
 
 function validate(divID){
 	if (divID == null) return false;
-	
+
 	$(divID+' input').each(function(){
 		if(!this.val() || this.val() === null || this.val() == '') return false;
 	});
-	
+
 	return true;
 }
 
 function moveToScreen(screenID) {
 	$('#message').hide();
-	
+
 	if(!validate()) return showMessage();
 	$('.current').hide();
 	$(screenID).slideUp('slow');
@@ -36,7 +36,7 @@ function showMessage() {
 <style>
  #message{
 	 display: none;
-	 /* Animation -to hide outmatically css3- */
+	 /* Animation -to hide outmatically css7- */
  }
 </style>
 <div class="wizard">
@@ -44,6 +44,7 @@ function showMessage() {
 		Inputs missing, please fill the form.
 	</div>
 	<form action="/somewhereCool.go" method="post">
+
 		<div class="screen" id="screen1">
 			<section>
 				<header>
@@ -78,10 +79,24 @@ function showMessage() {
 					<label for="answer34">Answer4</label><input name="answer3" id="answer34" type="radio" value="answer4">
 				</dialog>
 			</section>
+
+			<section>
+				<header>
+					Question 4?
+				</header>
+				<dialog>
+					<label for="answer31">Answer1</label><input name="answer3" id="answer41" type="radio" value="answer1">
+					<label for="answer32">Answer2</label><input name="answer3" id="answer42" type="radio" value="answer2">
+					<label for="answer33">Answer3</label><input name="answer3" id="answer43" type="radio" value="answer3">
+					<label for="answer34">Answer4</label><input name="answer3" id="answer44" type="radio" value="answer4">
+				</dialog>
+			</section>
+
 			<footer>
 				<input name="next" type="button" value="Next" onclick="moveToScreen('screen2')">
 			</footer>
 		</div>
+
 		<div class="screen" id="screen2">
 			<section>
 				<header>
@@ -101,21 +116,86 @@ function showMessage() {
 				<dialog>
 					<label for="answer61">Answer1</label><input name="answer2" id="answer61" type="radio" value="answer1">
 					<label for="answer62">Answer2</label><input name="answer2" id="answer62" type="radio" value="answer2">
-					<label for="answer63">Answer3</label><input name="answer2" id="answer63" type="radio" value="answer3">
+					<label for="answer63">Answer6</label><input name="answer2" id="answer63" type="radio" value="answer3">
 					<label for="answer64">Answer4</label><input name="answer2" id="answer64" type="radio" value="answer4">
 				</dialog>
 			</section>
 			<section>
 				<header>
-					Question 3?
+					Question 7?
 				</header>
 				<dialog>
-					<label for="answer31">Answer1</label><input name="answer3" id="answer31" type="radio" value="answer1">
-					<label for="answer32">Answer2</label><input name="answer3" id="answer32" type="radio" value="answer2">
-					<label for="answer33">Answer3</label><input name="answer3" id="answer33" type="radio" value="answer3">
-					<label for="answer34">Answer4</label><input name="answer3" id="answer34" type="radio" value="answer4">
+					<label for="answer71">Answer1</label><input name="answer7" id="answer71" type="radio" value="answer1">
+					<label for="answer72">Answer2</label><input name="answer7" id="answer72" type="radio" value="answer2">
+					<label for="answer73">Answer4</label><input name="answer7" id="answer73" type="radio" value="answer3">
+					<label for="answer74">Answer4</label><input name="answer7" id="answer74" type="radio" value="answer4">
 				</dialog>
 			</section>
+			<section>
+				<header>
+					Question 8?
+				</header>
+				<dialog>
+					<label for="answer81">Answer1</label><input name="answer8" id="answer81" type="radio" value="answer1">
+					<label for="answer82">Answer2</label><input name="answer8" id="answer82" type="radio" value="answer2">
+					<label for="answer83">Answer3</label><input name="answer8" id="answer83" type="radio" value="answer3">
+					<label for="answer84">Answer4</label><input name="answer8" id="answer84" type="radio" value="answer4">
+				</dialog>
+			</section>
+
+			<footer>
+				<input name="next" type="button" value="Finish" onclick="moveToScreen('screen3')">
+			</footer>
+		</div>
+
+
+		<div class="screen" id="screen3">
+			<section>
+				<header>
+					Question 9?
+				</header>
+				<dialog>
+					<label for="answer91">Answer1</label><input name="answer1" id="answer91" type="radio" value="answer1">
+					<label for="answer92">Answer2</label><input name="answer1" id="answer92" type="radio" value="answer2">
+					<label for="answer93">Answer3</label><input name="answer1" id="answer93" type="radio" value="answer3">
+					<label for="answer94">Answer4</label><input name="answer1" id="answer94" type="radio" value="answer4">
+				</dialog>
+			</section>
+			<section>
+				<header>
+					Question 10?
+				</header>
+				<dialog>
+					<label for="answer101">Answer1</label><input name="answer1" id="answer101" type="radio" value="answer1">
+					<label for="answer102">answer1</label><input name="answer2" id="answer102" type="radio" value="answer1">
+					<label for="answer103">Answer3</label><input name="answer3" id="answer103" type="radio" value="answer3">
+					<label for="answer104">Answer4</label><input name="answer4" id="answer104" type="radio" value="answer4">
+				</dialog>
+			</section>
+			<section>
+				<header>
+					Question 11?
+				</header>
+				<dialog>
+					<label for="answer11">Answer1</label><input name="answer11" id="answer111" type="radio" value="answer1">
+					<label for="answer11">Answer2</label><input name="answer11" id="answer112" type="radio" value="answer2">
+					<label for="answer11">Answer11</label><input name="answer11" id="answer113" type="radio" value="answer3">
+					<label for="answer11">Answer4</label><input name="answer11" id="answer114" type="radio" value="answer4">
+				</dialog>
+			</section>
+			<section>
+				<header>
+					Question 12?
+				</header>
+				<dialog>
+					<label for="answer121">Answer1</label><input name="answer12" id="answer121" type="radio" value="answer1">
+					<label for="answer122">Answer2</label><input name="answer12" id="answer122" type="radio" value="answer2">
+					<label for="answer123">Answer12</label><input name="answer12" id="answer123" type="radio" value="answer3">
+					<label for="answer124">Answer4</label><input name="answer12" id="answer124" type="radio" value="answer4">
+				</dialog>
+			</section>
+
+
 			<footer>
 				<input name="next" type="button" value="Finish" onclick="submitWizard()">
 			</footer>
