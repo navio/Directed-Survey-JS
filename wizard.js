@@ -21,7 +21,7 @@ wizard.prototype = {
 		
 		if ( qs.length ) {
 			qs.forEach(function(){
-				wizardHTML.appendChild(wizard.q(this));
+				wizardHTML.appendChild(wizard.q(this.question, this.answers));
 			})
 	
 		} else {
