@@ -20,11 +20,52 @@ function moveToScreen(screenID) {
 
 function submitWizard() {
 	var values = $( "form.wizard" ).serializeArray();
-	// redirectUser(values);
+	redirectUser(values);
 }
 
 function redirectUser(answers) {
-	// to be disclosed.
+	var v = [];
+	var skin =[];
+	var cd = ['answer3','answer4'];
+	var abc = ['answer1','answer2','answer3'];
+	
+	if(
+		cd.indexOf(answers['answer2'] ) != -1 ||
+		cd.indexOf(answers['answer5'] ) != -1 ||
+		cd.indexOf(answers['answer10']) != -1 ||
+		cd.indexOf(answers['answer12']) != -1 
+	) saver('Sensitive Skin', 'Daily Sanctuary, Face Toner, Masque'); v
+	
+	if(
+		cd.indexOf(answers['answer1'] ) != -1 ||
+		cd.indexOf(answers['answer4'] ) != -1 ||
+		cd.indexOf(answers['answer7']) != -1 ||
+		cd.indexOf(answers['answer9']) != -1 
+	) saver('Oily Skin','Indian Summer, Face Toner, & Masque');
+	
+	if(  
+		cd.indexOf(answers['answer1'] ) != -1 ||
+		cd.indexOf(answers['answer3'] ) != -1 ||
+		cd.indexOf(answers['answer4']) != -1 ||
+		cd.indexOf(answers['answer6']) != -1 ||
+		cd.indexOf(answers['answer7'] ) != -1 ||
+		cd.indexOf(answers['answer8'] ) != -1 ||
+		cd.indexOf(answers['answer9']) != -1 ||
+		cd.indexOf(answers['answer11']) != -1 
+	) saver('Balanced Skin', 'Nothings Urgent, Face Toner, Masques, & Body Butters');
+	
+	if(
+		cd.indexOf(answers['answer3'] ) != -1 ||
+		cd.indexOf(answers['answer6'] ) != -1 ||
+		cd.indexOf(answers['answer8']) != -1 ||
+		cd.indexOf(answers['answer11']) != -1 
+	) saver('Dry Skin', 'Sweet Wisdom, Face Toner, Masque, & Body Butters');
+	
+	function saver(dskin,legend){
+		skin.push(dskin); v.push(legend);
+	}
+	
+	
 }
 
 function showMessage() {
