@@ -13,7 +13,7 @@ function validate(divID){
 function moveToScreen(screenID) {
 	$('#message').hide();
 
-	if(!validate()) return showMessage();
+	if(!validate('.screen:visible')) return showMessage();
 	$('.current').hide();
 	$(screenID).slideUp('slow');
 }
