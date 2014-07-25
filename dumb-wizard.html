@@ -2,25 +2,25 @@
 
 function validate(divID){
 	if (divID == null) return false;
-
-	$(divID+' input').each(function(){
-		if(!this.val() || this.val() === null || this.val() == '') return false;
-	});
+       var size = $('.screen:visible input[type=radio]:checked').length;
+       if(size < 4) return false;
 
 	return true;
 }
 
 function moveToScreen(screenID) {
 	$('#message').hide();
-
 	if(!validate('.screen:visible')) return showMessage();
-	$('.current').hide();
-	$(screenID).slideUp('slow');
+	$('.screen:visible').hide();
+	$("#"+screenID).show();
 }
 
 function submitWizard() {
-	var values = $( "form.wizard" ).serializeArray();
-	redirectUser(values);
+	$('#message').hide();
+	if(!validate('.screen:visible')) return showMessage();
+	$('.screen:visible').hide();
+	$("#results").show();
+	redirectUser($( "form.wizard" ).serializeArray());
 }
 
 function redirectUser(answers) {
