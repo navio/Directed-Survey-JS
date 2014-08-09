@@ -23,48 +23,47 @@ function submitWizard() {
 	redirectUser($( "form.wizard" ).serializeArray());
 }
 
+
+
 function redirectUser(answers) {
+	var a = 'answer1',
+	    b = 'answer2',
+	    c = 'answer3',
+	    d = 'answer4';
+	
 	var v = [];
 	var skin =[];
-	var cd = ['answer3','answer4'];
-	var abc = ['answer1','answer2','answer3'];
+
 	
-	if(
-		cd.indexOf(answers['answer2'] ) != -1 ||
-		cd.indexOf(answers['answer5'] ) != -1 ||
-		cd.indexOf(answers['answer10']) != -1 ||
-		cd.indexOf(answers['answer12']) != -1 
-	) saver('Sensitive Skin', 'Daily Sanctuary, Face Toner, Masque'); v
 	
-	if(
-		cd.indexOf(answers['answer1'] ) != -1 ||
-		cd.indexOf(answers['answer4'] ) != -1 ||
-		cd.indexOf(answers['answer7']) != -1 ||
-		cd.indexOf(answers['answer9']) != -1 
-	) saver('Oily Skin','Indian Summer, Face Toner, & Masque');
-	
-	if(  
-		cd.indexOf(answers['answer1'] ) != -1 ||
-		cd.indexOf(answers['answer3'] ) != -1 ||
-		cd.indexOf(answers['answer4']) != -1 ||
-		cd.indexOf(answers['answer6']) != -1 ||
-		cd.indexOf(answers['answer7'] ) != -1 ||
-		cd.indexOf(answers['answer8'] ) != -1 ||
-		cd.indexOf(answers['answer9']) != -1 ||
-		cd.indexOf(answers['answer11']) != -1 
-	) saver('Balanced Skin', 'Nothings Urgent, Face Toner, Masques, & Body Butters');
-	
-	if(
-		cd.indexOf(answers['answer3'] ) != -1 ||
-		cd.indexOf(answers['answer6'] ) != -1 ||
-		cd.indexOf(answers['answer8']) != -1 ||
-		cd.indexOf(answers['answer11']) != -1 
-	) saver('Dry Skin', 'Sweet Wisdom, Face Toner, Masque, & Body Butters');
-	
-	function saver(dskin,legend){
-		skin.push(dskin); v.push(legend);
+	function vq(selections,questions,validator,response){
+		
+		if(response !== null && typeof response === 'object'){
+			
+			response = function(response){
+							window.location.href= response.link;
+						}
+		}
+		
+		if(validator){
+			if(validator.v.indexOf(answers['answer'+validator.q]) == -1) return response;
+		}
+		
+		for(var i = 1, questions > 1, i=i+1){ 
+			if(selections.indexOf(answers['answer'+questions[1]]) != -1 ){
+				return ;
+			}
+		}
+		
+		return false;
+		
 	}
-	
+  
+  //vq([array of solutions],[array of questions to test],{validator object, if required},@String_Skin||{Redirect Object})
+  // this examples downhere work.
+  
+	vq([c,d],[3,6,11,13],null,'Sensitive Skin');
+	vq([b,c,d],[2,5,8,10],{'q':[1],'v':[a]},{'link:':'http://www.yahoo.com/'});
 	
 }
 
@@ -72,6 +71,19 @@ function showMessage() {
 	$('#message').show();
 	return false;
 }
+
+
+
+/*
+
+# Heard in the train,
+Well, God is in His heaven
+And we all want what’s his
+But power and greed and corruptible seed
+Seem to be all that there is 
+
+
+*/
 
 </script>
 <style>
