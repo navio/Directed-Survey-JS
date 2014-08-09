@@ -1,11 +1,10 @@
 <script>
 
 function validate(divID){
-	if (divID == null) return false;
-       var size = $('.screen:visible input[type=radio]:checked').length;
-       if(size < 4) return false;
-
-	return true;
+	  if (divID === null) return false;
+	  var size = $('.screen:visible input[type=radio]:checked').length;
+	  if(size < 4) return false;
+	  return true;
 }
 
 function moveToScreen(screenID) {
@@ -15,77 +14,99 @@ function moveToScreen(screenID) {
 	$("#"+screenID).show();
 }
 
-function submitWizard() {
-	$('#message').hide();
-	if(!validate('.screen:visible')) return showMessage();
-	$('.screen:visible').hide();
-	$("#results").show();
-	redirectUser($( "form.wizard" ).serializeArray());
-}
-
-
-
-function redirectUser(answers) {
-	var a = 'answer1',
-	    b = 'answer2',
-	    c = 'answer3',
-	    d = 'answer4';
-	
-	var v = [];
-	var skin =[];
-
-	
-	
-	function vq(selections,questions,validator,response){
-		
-		if(response !== null && typeof response === 'object'){
-			
-			response = function(response){
-							window.location.href= response.link;
-						}
-		}
-		
-		if(validator){
-			if(validator.v.indexOf(answers['answer'+validator.q]) == -1) return response;
-		}
-		
-		for(var i = 1, questions > 1, i=i+1){ 
-			if(selections.indexOf(answers['answer'+questions[1]]) != -1 ){
-				return ;
-			}
-		}
-		
-		return false;
-		
-	}
-  
-  //vq([array of solutions],[array of questions to test],{validator object, if required},@String_Skin||{Redirect Object})
-  // this examples downhere work.
-  
-	vq([c,d],[3,6,11,13],null,'Sensitive Skin');
-	vq([b,c,d],[2,5,8,10],{'q':[1],'v':[a]},{'link:':'http://www.yahoo.com/'});
-	
-}
-
 function showMessage() {
 	$('#message').show();
 	return false;
 }
 
+function submitWizard() {
+	$('#message').hide();
+	if(!validate('.screen:visible')) return showMessage();
+	$('.screen:visible').hide();
+	$("#results").show();
+	var values = redirectUser($( "form.wizard" ).serializeArray(),['answer1','answer2','answer3','answer4'],'answer',function(verify){
+		
+		verify([[c,d],[3,6,11,13],null,'Sensitive Skin']);	
+		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':'a'},{'link':'http://www.yahoo.com/'}]);
+		
+		/*****************************************************************************************
+		vq([@array of solutions],[@array of questions to test],{@object: validator} || null , @String_Skin || {@object: to redirect});
+		verify([[c,d],[3,6,11,13],null,'Sensitive Skin']);
+		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':[a]},{'link':'http://www.yahoo.com/'}]);
+		*****************************************************************************************/
+		
+		
+	}).getValues();
+}
 
 
-/*
 
-# Heard in the train,
-Well, God is in His heaven
-And we all want what’s his
-But power and greed and corruptible seed
-Seem to be all that there is 
+function redirectUser(answers,options,quetion_prefix,fn) {
+	
+	var a = options[0],
+		b = options[1],
+		c = options[2],
+		d = options[3];
 
+	var text = [];
+	
 
-*/
+	function vq(selections,questions,validator,response){
+
+		if(response !== null && typeof response === 'object'){
+			response = function(response){
+							window.location.href = response.link;
+						};
+		}
+
+		if(validator){
+			if(validator.v.indexOf(answers[quetion_prefix+validator.q]) == -1) return response;
+		}
+
+		for(var i = 0; questions.length > i ; i=i+1){ 
+			if(selections.indexOf(answers[quetion_prefix+questions[1]]) != -1 ){
+				return ;
+			}
+		}
+		
+		return false;
+
+	}
+
+  	var vf = function verify(a) {
+	  	
+		  	if(a.length < 4) return false;
+	
+		  	var result = vq(a[0],a[1],a[2],a[3]);
+	
+		  	if(!result) return false;
+	
+	  		if(typeof(result) === 'function'){
+	  			result();
+	  		}else{
+	  			text.push(result);
+	  			return result;	
+	  		} 
+  	}
+  	
+  	function getValues(){
+	  	return text;
+  	}
+	
+	callback(vf);
+
+}
+
+	/*	
+	# Heard in the train,
+	Well, God is in His heaven
+	And we all want what’s his
+	But power and greed and corruptible seed
+	Seem to be all that there is 
+	*/
 
 </script>
+
 <style>
  #message{
 	 display: none;
