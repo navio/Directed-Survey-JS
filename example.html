@@ -24,32 +24,37 @@ function submitWizard() {
 	if(!validate('.screen:visible')) return showMessage();
 	$('.screen:visible').hide();
 	$("#results").show();
-	var values = redirectUser($( "form.wizard" ).serializeArray(),['answer1','answer2','answer3','answer4'],'answer',function(verify){
-		
+
+	var values = []; 
+
+	redirectUser($( "form.wizard" ).serializeArray(),'answer',function(verify,getVals){
+
+		var a = 'answer1',
+			b = 'answer2',
+			c = 'answer3',
+			d = 'answer4';
+
 		verify([[c,d],[3,6,11,13],null,'Sensitive Skin']);	
 		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':'a'},{'link':'http://www.yahoo.com/'}]);
-		
+
 		/*****************************************************************************************
 		vq([@array of solutions],[@array of questions to test],{@object: validator} || null , @String_Skin || {@object: to redirect});
 		verify([[c,d],[3,6,11,13],null,'Sensitive Skin']);
 		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':[a]},{'link':'http://www.yahoo.com/'}]);
 		*****************************************************************************************/
-		
-		
-	}).getValues();
+
+		values = getVals();
+	});
+
 }
 
 
 
-function redirectUser(answers,options,quetion_prefix,fn) {
-	
-	var a = options[0],
-		b = options[1],
-		c = options[2],
-		d = options[3];
+function redirectUser(answers,quetion_prefix,fn) {
+
 
 	var text = [];
-	
+
 
 	function vq(selections,questions,validator,response){
 
@@ -68,32 +73,32 @@ function redirectUser(answers,options,quetion_prefix,fn) {
 				return ;
 			}
 		}
-		
+
 		return false;
 
 	}
 
   	var vf = function verify(a) {
-	  	
+
 		  	if(a.length < 4) return false;
-	
+
 		  	var result = vq(a[0],a[1],a[2],a[3]);
-	
+
 		  	if(!result) return false;
-	
+
 	  		if(typeof(result) === 'function'){
 	  			result();
 	  		}else{
 	  			text.push(result);
 	  			return result;	
 	  		} 
-  	}
-  	
+  	};
+
   	function getValues(){
 	  	return text;
   	}
-	
-	callback(vf);
+
+	fn(vf);
 
 }
 
@@ -104,7 +109,6 @@ function redirectUser(answers,options,quetion_prefix,fn) {
 	But power and greed and corruptible seed
 	Seem to be all that there is 
 	*/
-
 </script>
 
 <style>
