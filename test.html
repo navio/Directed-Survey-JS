@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+  <form name="theform" id="theformID">
+	<input name="one" value="" /><br />
+	<input name="two" value="" />
+	<input type="button" id="check" value="send" />
+  </form>
+</body>
+</html>
+<script>
+$('#check').on('click', function(){
+	
+	var da = $('form.theformID');
+  	console.log("gg"+da.serializeArray() );
+
+});	
+</script>
