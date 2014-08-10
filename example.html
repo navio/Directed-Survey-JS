@@ -27,7 +27,7 @@ function submitWizard() {
 
 	var values = []; 
 
-	redirectUser($( "form.wizard" ).serializeArray(),'answer',function(verify,getVals){
+	verifier($( "form.wizard" ).serializeArray(),'answer',function(verify,getVals){
 
 		var a = 'answer1',
 			b = 'answer2',
@@ -35,7 +35,7 @@ function submitWizard() {
 			d = 'answer4';
 
 		verify([[c,d],[3,6,11,13],null,'Sensitive Skin']);	
-		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':'a'},{'link':'http://www.yahoo.com/'}]);
+		verify([[b,c,d],[2,5,8,10],{'q':[1],'v':a},{'link':'http://www.yahoo.com/'}]);
 
 		/*****************************************************************************************
 		vq([@array of solutions],[@array of questions to test],{@object: validator} || null , @String_Skin || {@object: to redirect});
@@ -50,65 +50,6 @@ function submitWizard() {
 
 
 
-function redirectUser(answers,quetion_prefix,fn) {
-
-
-	var text = [];
-
-
-	function vq(selections,questions,validator,response){
-
-		if(response !== null && typeof response === 'object'){
-			response = function(response){
-							window.location.href = response.link;
-						};
-		}
-
-		if(validator){
-			if(validator.v.indexOf(answers[quetion_prefix+validator.q]) == -1) return response;
-		}
-
-		for(var i = 0; questions.length > i ; i=i+1){ 
-			if(selections.indexOf(answers[quetion_prefix+questions[1]]) != -1 ){
-				return ;
-			}
-		}
-
-		return false;
-
-	}
-
-  	var vf = function verify(a) {
-
-		  	if(a.length < 4) return false;
-
-		  	var result = vq(a[0],a[1],a[2],a[3]);
-
-		  	if(!result) return false;
-
-	  		if(typeof(result) === 'function'){
-	  			result();
-	  		}else{
-	  			text.push(result);
-	  			return result;	
-	  		} 
-  	};
-
-  	function getValues(){
-	  	return text;
-  	}
-
-	fn(vf);
-
-}
-
-	/*	
-	# Heard in the train,
-	Well, God is in His heaven
-	And we all want what’s his
-	But power and greed and corruptible seed
-	Seem to be all that there is 
-	*/
 </script>
 
 <style>
