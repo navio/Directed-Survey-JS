@@ -25,14 +25,14 @@ This is how it is populated:
 	verifier(
 			@Array = Serialized_Array,
 			@String = Answers_Prefix,
-			@fn_callback = function(verify,getVals){
+			@function = function(verify,getVals){
 	
 	
 								verify( [
-										['c','d'], 							//Answers to Match
-										[3,6,11,13],	    						//Answers to Check
-										{'q':[1,2],'a':['c','d']},			//If question/s match an Answer, the procced to first bach 
-										'If Any Match'                       //Return Value, String of Function
+			/*Answers to Match*/			['c','d'], 							
+			/*Answers to Check*/			[3,6,11,13],	    						
+			/*function to verify*/		fn_other_verifier,	//If true then do the batch.		 
+			/*Return Bool,String,Fn*/   true                   
 										]
 									   );  // 
 		
@@ -41,7 +41,7 @@ This is how it is populated:
 
 
 ```
-For a working example you can check /example.html.
+For a working implementation, you can check /example.html.
 
 
 @navio
