@@ -41,4 +41,7 @@ This is how it is populated:
 
 
 ```
+For a working example you can check /example.html.
 
+
+@navio
