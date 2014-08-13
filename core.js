@@ -12,10 +12,7 @@ function verifier(answers,quetion_prefix,fn) {
 			response =  [response.link, redirect];
 		}
 
-		if(validator){
-			if(validator.v.indexOf(answers[quetion_prefix+validator.q]) == -1) 
-			  return false;
-		}
+		if(!validator) return false;  // Validator function (true or false)
 
 		for(var i = 0; questions.length > i ; i=i+1){ 
 
